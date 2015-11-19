@@ -7,10 +7,12 @@ import java.util.ArrayList;
  */
 public class Graphe {
     private ArrayList<Noeud> graphe;
+    private ArrayList<Aretes> aretes;
     private int taille;
 
     public Graphe(int taille){
         this.graphe = new ArrayList<>(taille);
+        this.aretes = new ArrayList<>();
         this.taille = taille;
         for(int i = 0 ; i<taille ; i++)
             graphe.add(new Noeud(i));
@@ -18,6 +20,7 @@ public class Graphe {
 
     public Graphe(){
         graphe = new ArrayList<>();
+        aretes = new ArrayList<>();
     }
 
 
@@ -29,6 +32,7 @@ public class Graphe {
         if(graphe.contains(noeudA)){
             noeudA.addVoisin(noeudB);
             graphe.add(noeudB);
+            aretes.add(new Aretes(noeudA,noeudB));
         }
     }
 
