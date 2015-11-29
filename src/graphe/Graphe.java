@@ -47,6 +47,10 @@ public class Graphe {
         
     }
 
+    public int getTaille() {
+        return taille;
+    }
+
     public String toString(){
         String s ="";
         for(int i =0 ; i<taille ; i++)
