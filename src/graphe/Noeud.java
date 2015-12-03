@@ -8,6 +8,14 @@ import java.util.*;
 public class Noeud {
     public int nom;
     private ArrayList<Noeud> voisins;
+<<<<<<< Updated upstream
+=======
+
+    public boolean isMarqueur1() {
+        return marqueur1;
+    }
+
+>>>>>>> Stashed changes
     private boolean marqueur1;
     private boolean marqueur2;
 

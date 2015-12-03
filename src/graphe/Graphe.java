@@ -50,6 +50,26 @@ public class Graphe {
         
     }
 
+
+    public static ArrayList<Fragment> getFragments(Graphe g, Graphe h){
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        boolean b = false;
+        //parcours des noeuds de h
+        for(Noeud temp : h.getNoeuds()){
+            //si une arete du noeud va dans g
+
+            for(Noeud voisin : temp.getVoisins()){
+
+                if(voisin.isMarqueur1()){
+
+
+                }
+            }
+        }
+
+        return fragments;
+    }
+
     public int getTaille() {
         return taille;
     }
@@ -60,4 +80,9 @@ public class Graphe {
             s+= noeuds.get(i).toString()+"\n";
         return s;
     }
+
+    public ArrayList<Noeud> getNoeuds() {
+        return noeuds;
+    }
+
 }
