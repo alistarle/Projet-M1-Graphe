@@ -1,3 +1,4 @@
+import graphe.Cycle;
 import graphe.Graphe;
 import read.read;
 import write.write;
@@ -8,11 +9,13 @@ import write.write;
 
 public class Main {
 
-    public static void main(String[]args){
+    public static void main(String[]args) throws Exception {
         Graphe graphe = read.getGraphe("test.graphe");
-        if(estPlanaire(graphe)){
-            write.writeGraphe(graphe);
-        }
+        Cycle cycle = Cycle.genRandomCycle(graphe.getNoeuds());
+        System.out.println(cycle);
+        //if(estPlanaire(graphe)){
+        //    write.writeGraphe(graphe);
+        //}
 
     }
 

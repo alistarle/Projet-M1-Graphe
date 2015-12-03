@@ -6,32 +6,35 @@ import java.util.ArrayList;
  * Created by juliengauttier on 14/10/15.
  */
 public class Graphe {
-    private ArrayList<Noeud> graphe;
+    private ArrayList<Noeud> noeuds;
     private ArrayList<Aretes> aretes;
     private int taille;
 
     public Graphe(int taille){
-        this.graphe = new ArrayList<>(taille);
+        this.noeuds = new ArrayList<>(taille);
         this.aretes = new ArrayList<>();
         this.taille = taille;
         for(int i = 0 ; i<taille ; i++)
-            graphe.add(new Noeud(i));
+            noeuds.add(new Noeud(i));
     }
 
     public Graphe(){
-        graphe = new ArrayList<>();
+        noeuds = new ArrayList<>();
         aretes = new ArrayList<>();
     }
 
+    public ArrayList<Noeud> getNoeuds() {
+        return noeuds;
+    }
 
     public Noeud getNoeud(int i){
-        return graphe.get(i);
+        return noeuds.get(i);
     }
 
     public void addNoeud(Noeud noeudA, Noeud noeudB){
-        if(graphe.contains(noeudA)){
+        if(noeuds.contains(noeudA)){
             noeudA.addVoisin(noeudB);
-            graphe.add(noeudB);
+            noeuds.add(noeudB);
             aretes.add(new Aretes(noeudA,noeudB));
         }
     }
@@ -54,7 +57,7 @@ public class Graphe {
     public String toString(){
         String s ="";
         for(int i =0 ; i<taille ; i++)
-            s+=graphe.get(i).toString()+"\n";
+            s+= noeuds.get(i).toString()+"\n";
         return s;
     }
 }
