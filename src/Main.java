@@ -10,7 +10,7 @@ import write.Write;
 public class Main {
 
     public static void main(String[]args) throws Exception {
-        MainGraph graph = Read.getGraph("test.model.graph");
+        MainGraph graph = Read.getGraph("test.graph");
         GraphController controller = new GraphController();
         if(controller.isPlanar(graph))
             Write.writeGraph(graph);
