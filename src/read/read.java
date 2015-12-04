@@ -41,7 +41,7 @@ public class Read {
                             char c = ligne.charAt(i);
                             if((c!=',')&&(c!=' ')&&(c!=']')){
                                 try {
-                                    node.addVoisin(graph.getNode(Integer.parseInt(ligne.charAt(i) + "")));
+                                    node.addNeighbour(graph.getNode(Integer.parseInt(ligne.charAt(i) + "")));
                                 }catch (Exception e3){
                                     System.out.println(e3);
                                 }

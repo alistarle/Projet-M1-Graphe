@@ -3,9 +3,15 @@ package model;
 import java.util.ArrayList;
 
 /**
+ * Class representative of a face
+ *
  * Created by juliengauttier on 19/11/15.
  */
 public class Face {
+
+    /**
+     * List of node who compose the face, linking isn't important, the order of the nodelist define the face
+     */
     private ArrayList<Node> nodeList;
 
     public Face(ArrayList<Node> nodeList) {
@@ -23,20 +29,28 @@ public class Face {
      * @return
      */
     public boolean isEligible(Fragment fragment) {
-
-        //TODO Regarder si tout les points de contact du fragment sont dans la face
-
+        for(Node node : fragment.getContactPoint()) {
+            if(!nodeList.contains(node))
+                return false;
+        }
         return true;
     }
 
+    /**
+     * Return if a face is equal to another, order is important, but it can be reserved.
+     * Indeed, face with node 1-2-3-4-5 equals face with node 5-4-3-2-1
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Face face = (Face) o;
+        //TODO Verifier si les sommets sont présent et dans le même ordre ou dans le sens inverse : 1-2-3-4-5 = 5-4-3-2-1
 
-        //TODO Verifier si les sommets sont dans le même ordre ou dans le sens inverse : 1-2-3-4-5 = 5-4-3-2-1
         return false;
     }
 }

@@ -25,7 +25,7 @@ public class Node implements Cloneable {
         return neighbours;
     }
 
-    public boolean addVoisin(Node e){
+    public boolean addNeighbour(Node e){
         neighbours.add(e);
         return true;
     }
@@ -40,9 +40,7 @@ public class Node implements Cloneable {
         return  s;
     }
 
-    public Node getFather() {
-        return father;
-    }
+    public Node getFather() { return father; }
 
     public void setFather(Node father) {
         this.father = father;

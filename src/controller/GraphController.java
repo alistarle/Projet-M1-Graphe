@@ -12,24 +12,41 @@ import java.util.ArrayList;
  * Created by alistarle on 04/12/2015.
  */
 public class GraphController {
+
+
+    /**
+     * List of fragment of G, used in algorithm
+     */
     private ArrayList<Fragment> fragments;
+
+    /**
+     * List of eligible face of H, used in algorithm
+     */
     private ArrayList<Face> faces;
+
+    /**
+     * List of node to compose a xy-chemin in algorithm
+     */
     private ArrayList<Node> path;
+
+    /**
+     * Tell if H has been updated, used in algorithm
+     */
     private boolean update;
 
 
     /**
-     * Return new graph made from a random cycle of another model.graph
+     * Return new graph made from a random cycle of another MainGraph G
      *
-     * @param graph
+     * @param G
      * @return
      * @throws Exception
      */
-    public SubGraph genGraphFromFirstCycle(MainGraph graph) throws Exception {
+    public SubGraph genGraphFromFirstCycle(MainGraph G) throws Exception {
         ArrayList<Node> seen = new ArrayList<>();
         ArrayList<Node> nodes = new ArrayList<>();
 
-        for(Node node : graph.getNodes()) {
+        for(Node node : G.getNodes()) {
             seen.add(node);
             for(Node neighbour : node.getNeighbours()) {
                 neighbour.setFather(node);
@@ -43,7 +60,7 @@ public class GraphController {
                         father = father.getFather();
                     }
                     nodes.add(father.clone());
-                    return new SubGraph(graph,new Face(nodes));
+                    return new SubGraph(G,new Face(nodes));
                 }
                 seen.add(neighbour);
             }
@@ -53,34 +70,34 @@ public class GraphController {
     }
 
     /**
-     * Check if a model.graph is planar or not
+     * Check if a MainGraph G is planar or not
      *
-     * @param graph
+     * @param G
      * @return
      */
-    public boolean isPlanar(MainGraph graph) throws Exception {
-        SubGraph inner = this.genGraphFromFirstCycle(graph); //On a initialisé H
-        graph.setSub(inner); //On définie H comme étant le sous-graphe de G
-        fragments = graph.getFragments();
-        while(fragments.iterator().hasNext()) {
-            fragments = graph.getFragments();
+    public boolean isPlanar(MainGraph G) throws Exception {
+        SubGraph H = this.genGraphFromFirstCycle(G); //On a initialisé H
+        G.setH(H); //On définie H comme étant le sous-graphe de G
+        fragments = G.getFragments();
+        while(fragments.iterator().hasNext()) { //Tant qu'il y a des fragments de G
+            fragments = G.getFragments();
             update = false;
             for(Fragment fragment : fragments) {
                 if(!update) {
-                    faces = graph.getEligible(fragment);
+                    faces = G.getEligible(fragment);
                     if(faces.size() == 0)
                         return false;
                     else if(faces.size() == 1) {
-                        path = fragment.calcPath();
-                        inner.divePath(faces.get(0),path);
+                        path = fragment.calcPath(); //On calcul un xy-chemin
+                        H.divePath(faces.get(0), path); //On plonge un xy-chemin dans H
                         update = true;
                     }
                 }
             }
             if(!update) {
-                path = fragments.get(0).calcPath();
-                faces = graph.getEligible(fragments.get(0));
-                inner.divePath(faces.get(0),path);
+                path = fragments.get(0).calcPath(); //On calcul un xy-chemin
+                faces = G.getEligible(fragments.get(0)); //On plonge ce xy-chemin dans H
+                H.divePath(faces.get(0), path);
             }
         }
         return true;

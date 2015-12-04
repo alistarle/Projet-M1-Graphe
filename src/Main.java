@@ -10,9 +10,9 @@ import write.Write;
 public class Main {
 
     public static void main(String[]args) throws Exception {
-        MainGraph graph = Read.getGraph("test.graph");
-        GraphController controller = new GraphController();
-        if(controller.isPlanar(graph))
-            Write.writeGraph(graph);
+        MainGraph G = Read.getGraph("test.graph"); //On initialise G à partir du fichier
+        GraphController controller = new GraphController(); //On crée un controlleur de graphe ( qui lancera l'algo )
+        if(controller.isPlanar(G)) //Si le graphe est planaire on l'écrit
+            Write.writeGraph(G);
     }
 }

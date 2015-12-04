@@ -7,18 +7,33 @@ import model.Node;
 import java.util.ArrayList;
 
 /**
+ * Graph representative of G in algorithm
+ *
  * Created by alistarle on 04/12/2015.
  */
 public class MainGraph extends Graph {
-    private SubGraph sub;
+
+    /**
+     * Link to the subgraph H in algorithm
+     */
+    private SubGraph H;
+
+    /**
+     * List of fragment of G
+     */
     private ArrayList<Fragment> fragments;
 
-    public MainGraph(int taille){
-        this.nodes = new ArrayList<>(taille);
+    /**
+     * Init mainGraph with size
+     *
+     * @param size
+     */
+    public MainGraph(int size){
+        this.nodes = new ArrayList<>(size);
         this.faces = new ArrayList<>();
         this.fragments = new ArrayList<>();
-        this.size = taille;
-        for(int i = 0 ; i<taille ; i++)
+        this.size = size;
+        for(int i = 0 ; i<size ; i++)
             nodes.add(new Node(i));
     }
 
@@ -32,7 +47,7 @@ public class MainGraph extends Graph {
      * Generate the list of fragment for the graph with the subgraph information
      */
     public void genFragments() {
-        //TODO Generer la liste des fragment du graphe grâce au sub-graphe H
+        //TODO Generer la liste des fragment du graphe grâce au graphe H
     }
 
     /**
@@ -54,7 +69,7 @@ public class MainGraph extends Graph {
         return fragments;
     }
 
-    public void setSub(SubGraph sub) {
-        this.sub = sub;
+    public void setH(SubGraph h) {
+        this.H = h;
     }
 }

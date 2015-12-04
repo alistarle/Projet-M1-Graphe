@@ -12,7 +12,7 @@ public class Fragment {
     private ArrayList<Node> nodeList;
 
     /**
-     * Create a new fragement of a model.graph with a list of node
+     * Create a new fragment of a graph with a list of node
      *
      * @param graph
      * @param nodeList

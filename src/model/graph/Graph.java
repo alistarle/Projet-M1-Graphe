@@ -6,11 +6,25 @@ import model.Node;
 import java.util.ArrayList;
 
 /**
+ * Main class representative of a general graph
+ *
  * Created by juliengauttier on 14/10/15.
  */
 abstract public class Graph {
+
+    /**
+     * List of node of the graph
+     */
     protected ArrayList<Node> nodes;
+
+    /**
+     * List of faces of the graph
+     */
     protected ArrayList<Face> faces;
+
+    /**
+     * Number of node in the graph
+     */
     protected int size;
 
 
@@ -35,7 +49,7 @@ abstract public class Graph {
 
     public void addNoeud(Node nodeA, Node nodeB){
         if(nodes.contains(nodeA)){
-            nodeA.addVoisin(nodeB);
+            nodeA.addNeighbour(nodeB);
             nodes.add(nodeB);
         }
     }
