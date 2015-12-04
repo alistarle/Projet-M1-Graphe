@@ -1,7 +1,7 @@
-import graphe.Cycle;
-import graphe.Graphe;
-import read.read;
-import write.write;
+import controller.GraphController;
+import model.graph.MainGraph;
+import read.Read;
+import write.Write;
 
 /**
  * Created by juliengauttier on 14/10/15.
@@ -10,18 +10,9 @@ import write.write;
 public class Main {
 
     public static void main(String[]args) throws Exception {
-        Graphe graphe = read.getGraphe("test.graphe");
-        Cycle cycle = Cycle.genRandomCycle(graphe.getNoeuds());
-        System.out.println(cycle);
-        //if(estPlanaire(graphe)){
-        //    write.writeGraphe(graphe);
-        //}
-
+        MainGraph graph = Read.getGraph("test.model.graph");
+        GraphController controller = new GraphController();
+        if(controller.isPlanar(graph))
+            Write.writeGraph(graph);
     }
-
-    public static boolean estPlanaire(Graphe g){
-
-        return true;
-    }
-
 }

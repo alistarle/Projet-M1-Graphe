@@ -1,38 +1,39 @@
 package read;
 
-import graphe.Graphe;
-import graphe.Noeud;
+import model.graph.Graph;
+import model.Node;
+import model.graph.MainGraph;
 
 import java.io.*;
 
 /**
  * Created by juliengauttier on 08/11/15.
  */
-public class read {
-    public Graphe graphe;
+public class Read {
+    public Graph graph;
     String FICHIER;
 
 
 
-    public static Graphe getGraphe(String fichier){
+    public static MainGraph getGraph(String fichier){
         String chaine="";
-        Graphe graphe = new Graphe();
+        MainGraph graph = new MainGraph();
         try{
             InputStream ips=new FileInputStream(fichier);
             InputStreamReader ipsr=new InputStreamReader(ips);
             BufferedReader br=new BufferedReader(ipsr);
             String ligne = br.readLine();
 
-            graphe = new Graphe(Integer.parseInt(ligne));
+            graph = new MainGraph(Integer.parseInt(ligne));
 
 
 
             int nom;
-            Noeud noeud;
+            Node node;
             while ((ligne=br.readLine())!=null)
             {
 
-                noeud = graphe.getNoeud(Integer.parseInt(ligne.charAt(0)+""));
+                node = graph.getNode(Integer.parseInt(ligne.charAt(0) + ""));
                 for(int i = 1; i<ligne.length() ; i++){
                     if(ligne.charAt(i)=='['){
                         i++;
@@ -40,7 +41,7 @@ public class read {
                             char c = ligne.charAt(i);
                             if((c!=',')&&(c!=' ')&&(c!=']')){
                                 try {
-                                    noeud.addVoisin(graphe.getNoeud(Integer.parseInt(ligne.charAt(i) + "")));
+                                    node.addVoisin(graph.getNode(Integer.parseInt(ligne.charAt(i) + "")));
                                 }catch (Exception e3){
                                     System.out.println(e3);
                                 }
@@ -71,8 +72,8 @@ public class read {
                 System.out.println(e2.toString());
             }
         }
-        System.out.print(graphe.toString());
-        return graphe;
+        System.out.print(graph.toString());
+        return graph;
     }
 
 }

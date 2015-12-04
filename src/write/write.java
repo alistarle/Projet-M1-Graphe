@@ -1,7 +1,8 @@
 package write;
 
-import graphe.Graphe;
-import graphe.Noeud;
+import model.graph.Graph;
+import model.Node;
+import model.graph.MainGraph;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,26 +10,26 @@ import java.io.FileWriter;
 /**
  * Created by juliengauttier on 29/11/15.
  */
-public class write{
-    public Graphe graphe;
+public class Write{
+    public Graph graph;
     public static String file = "TEST.dot";
 
 
-    public static boolean writeGraphe(Graphe g){
+    public static boolean writeGraph(MainGraph g){
         File f = new File(file);
 
-        String s = "graph system {\n";
-        Noeud Temp;
-        Noeud TempVoisins;
-        for (int i = 0; i < g.getTaille(); i++) {
-            Temp = g.getNoeud(i);
-            s+=Temp.nom+" [label= \""+Temp.nom+"\"];\n";
+        String s = "model.graph system {\n";
+        Node Temp;
+        Node TempVoisins;
+        for (int i = 0; i < g.getSize(); i++) {
+            Temp = g.getNode(i);
+            s+=Temp.getName()+" [label= \""+Temp.getName()+"\"];\n";
         }
-        for (int i = 0; i < g.getTaille(); i++) {
-            Temp = g.getNoeud(i);
-            for(int j = 0 ; j < Temp.getVoisins().size(); j++){
-                TempVoisins = Temp.getVoisins().get(j);
-                s+=Temp.nom+"--"+TempVoisins.nom+ ";\n";
+        for (int i = 0; i < g.getSize(); i++) {
+            Temp = g.getNode(i);
+            for(int j = 0 ; j < Temp.getNeighbours().size(); j++){
+                TempVoisins = Temp.getNeighbours().get(j);
+                s+=Temp.getName()+"--"+TempVoisins.getName()+ ";\n";
             }
         }
 
