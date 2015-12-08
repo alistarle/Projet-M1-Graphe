@@ -43,7 +43,7 @@ public class SubGraph extends Graph {
      */
     public void initNodeLinking(Face face) {
         ArrayList<Node> nodes = face.getNodeList();
-        Node node;
+        Node node = new Node();
 
         //Setup first node
         node = nodes.get(0);
@@ -78,7 +78,16 @@ public class SubGraph extends Graph {
      * Mark every node in the graph if are present in the mainGraph associated
      */
     public void syncWithMain() {
-        //TODO Parcourir la liste des noeuds du graphe et les marquer dans le mainGraph G associé
+        //Parcourir la liste des noeuds du graphe et les marquer dans le mainGraph G associé
+        for(Node node :this.nodes){
+            for(Node node2 : this.G.nodes){
+                if(node2.equals(node)){
+                    node2.setContactPoint(true);
+                }else{
+                    node2.setContactPoint(false);
+                }
+            }
+        }
     }
 
     /**
@@ -99,5 +108,6 @@ public class SubGraph extends Graph {
      */
     public void splitFace(Face face, ArrayList<Node> path) {
         //TODO Supprimer la face de la liste des faces, et en ajouter deux nouvelles calculés à partir du chemin donné
+
     }
 }

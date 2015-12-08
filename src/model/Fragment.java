@@ -44,8 +44,26 @@ public class Fragment {
         ArrayList<Node> seen = new ArrayList<>();
         ArrayList<Node> path = new ArrayList<>();
         Node from = this.getContactPoint().get(0);
+        boolean bool = true;
 
-        //TODO Parcours en profondeur depuis from jusqu'a un autre point de contact, retourner path ou throw exception sinon
+        //Parcours en profondeur depuis from jusqu'a un autre point de contact, retourner path ou throw exception sinon
+
+        seen.add(from);
+        Node temp = seen.get(0);
+        for(Node node : temp.getNeighbours()){
+            bool = false;
+            for(Node seens : seen){
+                if(seens.isContactPoint()&&!(seen.equals(from))){
+                    bool = true;
+                }
+            }
+            if(bool){
+                return path;
+            }else{
+                path.add(node);
+            }
+        }
+
 
         throw new Exception("Chemin non trouvé dans le fragment");
     }

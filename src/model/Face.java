@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Class representative of a face
- *
+ * <p/>
  * Created by juliengauttier on 19/11/15.
  */
 public class Face {
@@ -29,8 +29,8 @@ public class Face {
      * @return
      */
     public boolean isEligible(Fragment fragment) {
-        for(Node node : fragment.getContactPoint()) {
-            if(!nodeList.contains(node))
+        for (Node node : fragment.getContactPoint()) {
+            if (!nodeList.contains(node))
                 return false;
         }
         return true;
@@ -47,10 +47,19 @@ public class Face {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (this.getNodeList().size() != ((Face) o).getNodeList().size()) return false;
 
         Face face = (Face) o;
-        //TODO Verifier si les sommets sont présent et dans le même ordre ou dans le sens inverse : 1-2-3-4-5 = 5-4-3-2-1
-
-        return false;
+        //Verifier si les sommets sont présent et dans le même ordre ou dans le sens inverse : 1-2-3-4-5 = 5-4-3-2-1
+        boolean ordre = true;
+        for (int i = 0; i < ((Face) o).getNodeList().size(); i++) {
+            if ((this.getNodeList().get(i).getName() != (face).getNodeList().get(i).getName())||(!ordre)){
+                ordre = false;
+                if(this.getNodeList().get(i).getName() != (face).getNodeList().get(this.getNodeList().size()-1-i).getName()){
+                    return false;
+                }
+            }
+        }
+        return ordre;
     }
 }

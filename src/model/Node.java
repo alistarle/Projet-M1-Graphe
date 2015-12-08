@@ -21,6 +21,11 @@ public class Node implements Cloneable {
         this.neighbours = neighbours;
     }
 
+    public Node() {
+        this.neighbours = new ArrayList<>();
+
+    }
+
     public ArrayList<Node> getNeighbours() {
         return neighbours;
     }
