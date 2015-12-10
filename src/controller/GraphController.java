@@ -100,6 +100,7 @@ public class GraphController {
                 H.divePath(faces.get(0), path);
             }
         }
+        System.out.print("true");
         return true;
     }
 }

@@ -48,6 +48,10 @@ public class MainGraph extends Graph {
      */
     public void genFragments() {
         //TODO Generer la liste des fragment du graphe grâce au graphe H
+
+
+
+
     }
 
     /**

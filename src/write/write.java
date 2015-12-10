@@ -12,7 +12,7 @@ import java.io.FileWriter;
  */
 public class Write{
     public Graph graph;
-    public static String file = "TEST.dot";
+    public static String file = "graphe.dot";
 
 
     public static boolean writeGraph(MainGraph g){
@@ -29,6 +29,7 @@ public class Write{
             Temp = g.getNode(i);
             for(int j = 0 ; j < Temp.getNeighbours().size(); j++){
                 TempVoisins = Temp.getNeighbours().get(j);
+                if(TempVoisins!=null)
                 s+=Temp.getName()+"--"+TempVoisins.getName()+ ";\n";
             }
         }

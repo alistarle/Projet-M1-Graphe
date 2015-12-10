@@ -50,8 +50,9 @@ public class Face {
         if (this.getNodeList().size() != ((Face) o).getNodeList().size()) return false;
 
         Face face = (Face) o;
-        //Verifier si les sommets sont présent et dans le même ordre ou dans le sens inverse : 1-2-3-4-5 = 5-4-3-2-1
         boolean ordre = true;
+
+        //Verifier ordre ou ordre inverse 1-2-3 3-2-1
         for (int i = 0; i < ((Face) o).getNodeList().size(); i++) {
             if ((this.getNodeList().get(i).getName() != (face).getNodeList().get(i).getName())||(!ordre)){
                 ordre = false;

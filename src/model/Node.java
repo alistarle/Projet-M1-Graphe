@@ -23,6 +23,8 @@ public class Node implements Cloneable {
 
     public Node() {
         this.neighbours = new ArrayList<>();
+        int name = 0;
+        contactPoint= false;
 
     }
 
@@ -64,9 +66,10 @@ public class Node implements Cloneable {
     }
 
     public Node clone() {
-
-        //TODO Faire la fonction clone
-
+        Node node = new Node();
+        node.contactPoint = this.contactPoint;
+        node.neighbours = new ArrayList<>();
+        node.name=this.name;
         return null;
     }
 }

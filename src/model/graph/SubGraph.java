@@ -27,11 +27,11 @@ public class SubGraph extends Graph {
         this.G = G;
         this.faces = new ArrayList<>();
         this.nodes = new ArrayList<>();
-        nodes.addAll(face.getNodeList()); //On ajoute tout les noeud du cycle dans H
+        nodes.addAll(face.getNodeList()); //On ajoute tout les noeuds du cycle dans H
 
         initNodeLinking(face); //On initialise les liens entre les noeuds de la face
 
-        faces.add(face); //On ajoute les face, interne et externe, au debut ce sont les même
+        faces.add(face); //On ajoute les faces, interne et externe, au debut ce sont les mêmes
         faces.add(face);
     }
 
@@ -57,9 +57,11 @@ public class SubGraph extends Graph {
         }
 
         //Setup last node
+        /*
         node = nodes.get(nodes.size()-1);
         node.getNeighbours().add(nodes.get(nodes.size()-2));
         node.getNeighbours().add(nodes.get(0));
+        */
     }
 
     /**
@@ -68,7 +70,7 @@ public class SubGraph extends Graph {
      * @param face
      * @param path
      */
-    public void divePath(Face face, ArrayList<Node> path) {
+    public void divePath(Face face, ArrayList<Node> path) throws Exception {
         this.addPath(face, path);
         this.splitFace(face, path);
         this.syncWithMain();
@@ -95,8 +97,33 @@ public class SubGraph extends Graph {
      *
      * @param path
      */
-    public void addPath(Face face, ArrayList<Node> path) {
-        //TODO Ajouter le chemin au graphe
+    public void addPath(Face face, ArrayList<Node> path) throws Exception {
+        //TODO debug
+        Node first = new Node();
+        Node last = new Node();
+        for(Node node : this.nodes){
+            if(node.equals(path.get(0))){
+                first = node;
+            }
+            if(node.equals(path.get(path.size()-1))){
+                last = node;
+            }
+        }
+        Node temp = first;
+        for(Node node : path){
+            temp.getNeighbours().add(node);
+            temp=node;
+            if(temp.equals(last)){
+
+                return;
+            }
+        }
+        //throw exception juste pour les test
+        throw new Exception("Chemin invalide");
+
+
+
+
     }
 
 
@@ -107,7 +134,18 @@ public class SubGraph extends Graph {
      * @param path
      */
     public void splitFace(Face face, ArrayList<Node> path) {
-        //TODO Supprimer la face de la liste des faces, et en ajouter deux nouvelles calculés à partir du chemin donné
+        Face face1 = new Face(new ArrayList<Node>());
+        Face face2 = new Face(new ArrayList<Node>());
+
+        //TODO calculer les deux faces à partir du chemin donné
+
+        for(int i = 0 ; i < G.getFragments().size(); i++){
+            if(face.equals(G.faces.get(i)))
+                G.faces.remove(i);
+        }
+        G.faces.add(face1);
+        G.faces.add(face2);
+
 
     }
 }
