@@ -56,6 +56,8 @@ public class SubGraph extends Graph {
             nodes.get(i).getNeighbours().add(nodes.get(i-1));
         }
 
+        //TODO : throw null exception ?
+
         //Setup last node
         /*
         node = nodes.get(nodes.size()-1);
@@ -98,7 +100,6 @@ public class SubGraph extends Graph {
      * @param path
      */
     public void addPath(Face face, ArrayList<Node> path) throws Exception {
-        //TODO debug
         Node first = new Node();
         Node last = new Node();
         for(Node node : this.nodes){
@@ -114,7 +115,7 @@ public class SubGraph extends Graph {
             temp.getNeighbours().add(node);
             temp=node;
             if(temp.equals(last)){
-
+                //TODO debug
                 return;
             }
         }
@@ -136,9 +137,7 @@ public class SubGraph extends Graph {
     public void splitFace(Face face, ArrayList<Node> path) {
         Face face1 = new Face(new ArrayList<Node>());
         Face face2 = new Face(new ArrayList<Node>());
-
-        //TODO calculer les deux faces à partir du chemin donné
-
+        //TODO calculer faces
         for(int i = 0 ; i < G.getFragments().size(); i++){
             if(face.equals(G.faces.get(i)))
                 G.faces.remove(i);
