@@ -144,7 +144,5 @@ public class SubGraph extends Graph {
         }
         G.faces.add(face1);
         G.faces.add(face2);
-
-
     }
 }
